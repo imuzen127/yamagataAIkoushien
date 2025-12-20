@@ -1,0 +1,802 @@
+{
+  "1": {
+    "name": "旭川市旭山動物園",
+    "lat": 43.7691417195405,
+    "lon": 142.480065305851,
+    "zoom": 15,
+    "score": 0.13759273290634155,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_001.png"
+  },
+  "2": {
+    "name": "札幌コミュニティドーム",
+    "lat": 43.1159949379907,
+    "lon": 141.375554996582,
+    "zoom": 17,
+    "score": 0.5876361727714539,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_002.png"
+  },
+  "3": {
+    "name": "白い恋人パーク",
+    "lat": 43.0889666352227,
+    "lon": 141.272074504057,
+    "zoom": 18,
+    "score": 0.028626373037695885,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_003.png"
+  },
+  "4": {
+    "name": "札幌時計台",
+    "lat": 43.062729150177,
+    "lon": 141.35373376035,
+    "zoom": 18,
+    "score": 0.11153051257133484,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_004.png"
+  },
+  "5": {
+    "name": "さっぽろテレビ塔",
+    "lat": 43.061292801233,
+    "lon": 141.357518938356,
+    "zoom": 17,
+    "score": 0.07433319836854935,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_005.png"
+  },
+  "6": {
+    "name": "札幌ドーム",
+    "lat": 43.0151978282371,
+    "lon": 141.410478186782,
+    "zoom": 16,
+    "score": 0.2719523310661316,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_006.png"
+  },
+  "7": {
+    "name": "五稜郭跡",
+    "lat": 41.7971684239949,
+    "lon": 140.757596488976,
+    "zoom": 16,
+    "score": 0.12930543720722198,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_007.png"
+  },
+  "8": {
+    "name": "大館樹海ドーム",
+    "lat": 40.2928703081572,
+    "lon": 140.587158248662,
+    "zoom": 17,
+    "score": 0.47581714391708374,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_008.png"
+  },
+  "9": {
+    "name": "中尊寺",
+    "lat": 39.0016904744133,
+    "lon": 141.103577897258,
+    "zoom": 16,
+    "score": 0.015889018774032593,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_009.png"
+  },
+  "10": {
+    "name": "瑞巌寺",
+    "lat": 38.3722116445175,
+    "lon": 141.060196735038,
+    "zoom": 18,
+    "score": 0.22224627435207367,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_010.png"
+  },
+  "11": {
+    "name": "山形県総合運動公園",
+    "lat": 38.3363138491126,
+    "lon": 140.376377982997,
+    "zoom": 16,
+    "score": 0.0357326902449131,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_011.png"
+  },
+  "12": {
+    "name": "仙台市屋内グラウンド",
+    "lat": 38.3286665659504,
+    "lon": 140.862411455925,
+    "zoom": 17,
+    "score": 0.3082851469516754,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_012.png"
+  },
+  "13": {
+    "name": "福島県営あづま球場",
+    "lat": 37.7215529228115,
+    "lon": 140.362457345555,
+    "zoom": 16,
+    "score": 0.14833994209766388,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_013.png"
+  },
+  "14": {
+    "name": "良寛の里美術館",
+    "lat": 37.5808997355257,
+    "lon": 138.765635874938,
+    "zoom": 14,
+    "score": 0.22019609808921814,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_014.png"
+  },
+  "15": {
+    "name": "のとじま水族館",
+    "lat": 37.1492906459089,
+    "lon": 136.982511175476,
+    "zoom": 17,
+    "score": 0.19539622962474823,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_015.png"
+  },
+  "16": {
+    "name": "フォッサマグナミュージアム",
+    "lat": 37.0258731069235,
+    "lon": 137.870892661979,
+    "zoom": 16,
+    "score": 0.19382266700267792,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_016.png"
+  },
+  "17": {
+    "name": "スパリゾートハワイアンズ",
+    "lat": 36.9936501403196,
+    "lon": 140.815899831293,
+    "zoom": 18,
+    "score": 0.31625595688819885,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_017.png"
+  },
+  "18": {
+    "name": "アクアマリンふくしま",
+    "lat": 36.9432229198338,
+    "lon": 140.902430863272,
+    "zoom": 16,
+    "score": 0.25865378975868225,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_018.png"
+  },
+  "19": {
+    "name": "善光寺",
+    "lat": 36.6616895395212,
+    "lon": 138.187992085806,
+    "zoom": 18,
+    "score": 0.10984921455383301,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_019.png"
+  },
+  "20": {
+    "name": "クロスランドタワー",
+    "lat": 36.6563278878372,
+    "lon": 136.879095785368,
+    "zoom": 17,
+    "score": 0.32474929094314575,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_020.png"
+  },
+  "21": {
+    "name": "砺波チューリップ公園",
+    "lat": 36.6403410306901,
+    "lon": 136.962841159564,
+    "zoom": 16,
+    "score": 0.02143852598965168,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_021.png"
+  },
+  "22": {
+    "name": "いしかわ動物園",
+    "lat": 36.43327735058,
+    "lon": 136.546494582847,
+    "zoom": 18,
+    "score": 0.1000332459807396,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_022.png"
+  },
+  "23": {
+    "name": "グリーンドーム前橋",
+    "lat": 36.397294498524,
+    "lon": 139.06073108881,
+    "zoom": 15,
+    "score": -0.005049553234130144,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_023.png"
+  },
+  "24": {
+    "name": "こまつドーム",
+    "lat": 36.3388892892824,
+    "lon": 136.435443300035,
+    "zoom": 16,
+    "score": 0.34815359115600586,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_024.png"
+  },
+  "25": {
+    "name": "芝政ワールド",
+    "lat": 36.2502270119288,
+    "lon": 136.179532159551,
+    "zoom": 16,
+    "score": 0.17985837161540985,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_025.png"
+  },
+  "26": {
+    "name": "松本城",
+    "lat": 36.2388087346866,
+    "lon": 137.969232177294,
+    "zoom": 18,
+    "score": 0.2771376073360443,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_026.png"
+  },
+  "27": {
+    "name": "彩の国くまがやドーム",
+    "lat": 36.1665487629478,
+    "lon": 139.4102728577,
+    "zoom": 17,
+    "score": 0.3522614538669586,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_027.png"
+  },
+  "28": {
+    "name": "福井県立恐竜博物館",
+    "lat": 36.0824362749835,
+    "lon": 136.507487317217,
+    "zoom": 16,
+    "score": 0.14227552711963654,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_028.png"
+  },
+  "29": {
+    "name": "西武ドーム",
+    "lat": 35.7686619402694,
+    "lon": 139.421237957687,
+    "zoom": 17,
+    "score": 0.44319334626197815,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_029.png"
+  },
+  "30": {
+    "name": "銚子ポートタワー",
+    "lat": 35.7411560781576,
+    "lon": 140.863685774877,
+    "zoom": 14,
+    "score": 0.10590086877346039,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_030.png"
+  },
+  "31": {
+    "name": "湯島聖堂",
+    "lat": 35.7009818248477,
+    "lon": 139.766938494468,
+    "zoom": 17,
+    "score": 0.06551822274923325,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_031.png"
+  },
+  "32": {
+    "name": "東京タワー",
+    "lat": 35.6587809687413,
+    "lon": 139.746205373025,
+    "zoom": 17,
+    "score": 0.16446341574192047,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_032.png"
+  },
+  "33": {
+    "name": "幕張メッセ",
+    "lat": 35.6478337856672,
+    "lon": 140.036032852137,
+    "zoom": 16,
+    "score": 0.10754559934139252,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_033.png"
+  },
+  "34": {
+    "name": "マリンスタジアム",
+    "lat": 35.6453838756089,
+    "lon": 140.029820856368,
+    "zoom": 14,
+    "score": 0.013990319333970547,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_034.png"
+  },
+  "35": {
+    "name": "有明コロシアム",
+    "lat": 35.6366751242346,
+    "lon": 139.790696211656,
+    "zoom": 17,
+    "score": 0.25283271074295044,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_035.png"
+  },
+  "36": {
+    "name": "千葉ポートタワー",
+    "lat": 35.6004577386851,
+    "lon": 140.098829090214,
+    "zoom": 15,
+    "score": 0.25198984146118164,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_036.png"
+  },
+  "37": {
+    "name": "羽田空港",
+    "lat": 35.548975391667,
+    "lon": 139.779174439452,
+    "zoom": 16,
+    "score": 0.3317215144634247,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_037.png"
+  },
+  "38": {
+    "name": "砂の美術館 砂丘展望広場",
+    "lat": 35.5406148542503,
+    "lon": 134.238113784666,
+    "zoom": 15,
+    "score": 0.1637839525938034,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_038.png"
+  },
+  "39": {
+    "name": "夢みなとタワー",
+    "lat": 35.5198441962264,
+    "lon": 133.259884353982,
+    "zoom": 17,
+    "score": 0.3171035349369049,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_039.png"
+  },
+  "40": {
+    "name": "松江城",
+    "lat": 35.4753431655434,
+    "lon": 133.05104307727,
+    "zoom": 18,
+    "score": 0.1805480271577835,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_040.png"
+  },
+  "41": {
+    "name": "横浜ランドマークタワー",
+    "lat": 35.4551025424533,
+    "lon": 139.632415865072,
+    "zoom": 17,
+    "score": 0.03804001957178116,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_041.png"
+  },
+  "42": {
+    "name": "横浜マリンタワー",
+    "lat": 35.4442769943782,
+    "lon": 139.651921513112,
+    "zoom": 18,
+    "score": 0.03767108917236328,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_042.png"
+  },
+  "43": {
+    "name": "東京ドイツ村",
+    "lat": 35.4057852992016,
+    "lon": 140.054792898156,
+    "zoom": 16,
+    "score": 0.15225178003311157,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_043.png"
+  },
+  "44": {
+    "name": "墨俣一夜城",
+    "lat": 35.3678267187555,
+    "lon": 136.688195884937,
+    "zoom": 18,
+    "score": 0.10858266055583954,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_044.png"
+  },
+  "45": {
+    "name": "長浜ドーム",
+    "lat": 35.3527514858778,
+    "lon": 136.282530393904,
+    "zoom": 18,
+    "score": -0.015237323008477688,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_045.png"
+  },
+  "46": {
+    "name": "新江ノ島水族館",
+    "lat": 35.3101536096776,
+    "lon": 139.480264846027,
+    "zoom": 17,
+    "score": 0.09097141027450562,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_046.png"
+  },
+  "47": {
+    "name": "彦根城",
+    "lat": 35.2766359063409,
+    "lon": 136.252210777263,
+    "zoom": 17,
+    "score": 0.16037783026695251,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_047.png"
+  },
+  "48": {
+    "name": "ナゴヤドーム",
+    "lat": 35.1860445390311,
+    "lon": 136.947595141732,
+    "zoom": 16,
+    "score": 0.2692786455154419,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_048.png"
+  },
+  "49": {
+    "name": "名古屋城",
+    "lat": 35.1848377593017,
+    "lon": 136.900278382806,
+    "zoom": 16,
+    "score": 0.16851237416267395,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_049.png"
+  },
+  "50": {
+    "name": "徳川美術館",
+    "lat": 35.1834573402625,
+    "lon": 136.933642263767,
+    "zoom": 18,
+    "score": 0.12316400557756424,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_050.png"
+  },
+  "51": {
+    "name": "オアシス21",
+    "lat": 35.1710785756329,
+    "lon": 136.909995948424,
+    "zoom": 17,
+    "score": 0.045448265969753265,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_051.png"
+  },
+  "52": {
+    "name": "東山スカイタワー",
+    "lat": 35.1569511777853,
+    "lon": 136.979816134378,
+    "zoom": 17,
+    "score": 0.07303954660892487,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_052.png"
+  },
+  "53": {
+    "name": "鴨川シーワールド",
+    "lat": 35.1160441660416,
+    "lon": 140.120741321436,
+    "zoom": 17,
+    "score": 0.38296735286712646,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_053.png"
+  },
+  "54": {
+    "name": "比叡山延暦寺",
+    "lat": 35.0705424015155,
+    "lon": 135.841449361915,
+    "zoom": 17,
+    "score": 0.018353549763560295,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_054.png"
+  },
+  "55": {
+    "name": "金閣寺",
+    "lat": 35.039519306063,
+    "lon": 135.729586419585,
+    "zoom": 18,
+    "score": 0.12465090304613113,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_055.png"
+  },
+  "56": {
+    "name": "清水寺",
+    "lat": 34.9948771114458,
+    "lon": 135.785025777254,
+    "zoom": 18,
+    "score": 0.22311969101428986,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_056.png"
+  },
+  "57": {
+    "name": "ニデック京都タワー",
+    "lat": 34.9875995817776,
+    "lon": 135.760013544169,
+    "zoom": 18,
+    "score": 0.042657025158405304,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_057.png"
+  },
+  "58": {
+    "name": "四日市ドーム",
+    "lat": 34.9830051862188,
+    "lon": 136.648069380951,
+    "zoom": 17,
+    "score": 0.5578377842903137,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_058.png"
+  },
+  "59": {
+    "name": "長岡天満宮",
+    "lat": 34.9229719346707,
+    "lon": 135.687432015331,
+    "zoom": 14,
+    "score": 0.07591652125120163,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_059.png"
+  },
+  "60": {
+    "name": "天城ドーム",
+    "lat": 34.9132451235281,
+    "lon": 138.892508887807,
+    "zoom": 17,
+    "score": 0.20009054243564606,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_060.png"
+  },
+  "61": {
+    "name": "姫路城",
+    "lat": 34.8396162820917,
+    "lon": 134.694119273552,
+    "zoom": 18,
+    "score": 0.26750704646110535,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_061.png"
+  },
+  "62": {
+    "name": "ビーンズドーム",
+    "lat": 34.7825291387725,
+    "lon": 135.042666740274,
+    "zoom": 18,
+    "score": 0.08254657685756683,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_062.png"
+  },
+  "63": {
+    "name": "阪神甲子園球場",
+    "lat": 34.7213320118572,
+    "lon": 135.362353671147,
+    "zoom": 17,
+    "score": 0.046415895223617554,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_063.png"
+  },
+  "64": {
+    "name": "梅田スカイビル",
+    "lat": 34.7054106540186,
+    "lon": 135.490253511626,
+    "zoom": 18,
+    "score": 0.38952675461769104,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_064.png"
+  },
+  "65": {
+    "name": "東大寺二月堂",
+    "lat": 34.6892834947199,
+    "lon": 135.844865569297,
+    "zoom": 15,
+    "score": 0.27757570147514343,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_065.png"
+  },
+  "66": {
+    "name": "東大寺",
+    "lat": 34.6891879745974,
+    "lon": 135.840373696284,
+    "zoom": 15,
+    "score": 0.05532651022076607,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_066.png"
+  },
+  "67": {
+    "name": "興福寺",
+    "lat": 34.6830747221653,
+    "lon": 135.831624236764,
+    "zoom": 17,
+    "score": 0.0741070806980133,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_067.png"
+  },
+  "68": {
+    "name": "神戸ポートタワー",
+    "lat": 34.6827887777735,
+    "lon": 135.187139379093,
+    "zoom": 16,
+    "score": 0.0864877700805664,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_068.png"
+  },
+  "69": {
+    "name": "メリケンパーク",
+    "lat": 34.6824348333795,
+    "lon": 135.189492374843,
+    "zoom": 15,
+    "score": 0.03717298060655594,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_069.png"
+  },
+  "70": {
+    "name": "春日大社",
+    "lat": 34.6817360970291,
+    "lon": 135.848873174309,
+    "zoom": 17,
+    "score": 0.08481492847204208,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_070.png"
+  },
+  "71": {
+    "name": "生駒山上遊園地",
+    "lat": 34.6794209985379,
+    "lon": 135.679493261902,
+    "zoom": 16,
+    "score": 0.4283304214477539,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_071.png"
+  },
+  "72": {
+    "name": "大阪ドーム",
+    "lat": 34.6693970967459,
+    "lon": 135.476437522907,
+    "zoom": 16,
+    "score": 0.05617178976535797,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_072.png"
+  },
+  "73": {
+    "name": "花園ラグビー場",
+    "lat": 34.6690403723931,
+    "lon": 135.62680329231,
+    "zoom": 15,
+    "score": 0.061844732612371445,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_073.png"
+  },
+  "74": {
+    "name": "御崎公園球技場",
+    "lat": 34.6569167758715,
+    "lon": 135.1704275595,
+    "zoom": 14,
+    "score": 0.0031490495894104242,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_074.png"
+  },
+  "75": {
+    "name": "岡山ドーム",
+    "lat": 34.6540117607927,
+    "lon": 133.893056011625,
+    "zoom": 17,
+    "score": 0.4735163152217865,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_075.png"
+  },
+  "76": {
+    "name": "通天閣",
+    "lat": 34.6525962556841,
+    "lon": 135.506745679092,
+    "zoom": 17,
+    "score": 0.06459325551986694,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_076.png"
+  },
+  "77": {
+    "name": "郡山城跡（大和郡山城）",
+    "lat": 34.651565599003,
+    "lon": 135.780177008204,
+    "zoom": 15,
+    "score": 0.04417695477604866,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_077.png"
+  },
+  "78": {
+    "name": "法隆寺",
+    "lat": 34.6149904109619,
+    "lon": 135.734568093654,
+    "zoom": 14,
+    "score": 0.1802956461906433,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_078.png"
+  },
+  "79": {
+    "name": "PLの塔",
+    "lat": 34.5024606813448,
+    "lon": 135.586372107923,
+    "zoom": 17,
+    "score": 0.5904412865638733,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_079.png"
+  },
+  "80": {
+    "name": "橿原神宮",
+    "lat": 34.4885207221304,
+    "lon": 135.786758933061,
+    "zoom": 17,
+    "score": 0.4348025619983673,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_080.png"
+  },
+  "81": {
+    "name": "鳥羽水族館",
+    "lat": 34.4817151309108,
+    "lon": 136.846422157646,
+    "zoom": 17,
+    "score": 0.2525932490825653,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_081.png"
+  },
+  "82": {
+    "name": "石舞台古墳",
+    "lat": 34.466993299751,
+    "lon": 135.826373802376,
+    "zoom": 16,
+    "score": 0.3029453456401825,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_082.png"
+  },
+  "83": {
+    "name": "関西国際空港",
+    "lat": 34.4322811281539,
+    "lon": 135.237675774718,
+    "zoom": 16,
+    "score": 0.18416637182235718,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_083.png"
+  },
+  "84": {
+    "name": "志摩スペイン村",
+    "lat": 34.362243559747,
+    "lon": 136.845008125109,
+    "zoom": 16,
+    "score": 0.021527720615267754,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_084.png"
+  },
+  "85": {
+    "name": "秋吉台自然動物公園サファリランド",
+    "lat": 34.2849300840032,
+    "lon": 131.33239179812,
+    "zoom": 16,
+    "score": 0.031969401985406876,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_085.png"
+  },
+  "86": {
+    "name": "大塚国際美術館",
+    "lat": 34.2324969856427,
+    "lon": 134.638432707914,
+    "zoom": 15,
+    "score": 0.33380013704299927,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_086.png"
+  },
+  "87": {
+    "name": "山口きらら博記念公園多目的ドーム",
+    "lat": 34.0048584338991,
+    "lon": 131.370423767427,
+    "zoom": 15,
+    "score": 0.2580117881298065,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_087.png"
+  },
+  "88": {
+    "name": "市立しものせき水族館 海響館",
+    "lat": 33.9547434641077,
+    "lon": 130.943187217149,
+    "zoom": 18,
+    "score": 0.2638413906097412,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_088.png"
+  },
+  "89": {
+    "name": "坂の上の雲ミュージアム",
+    "lat": 33.8417431409967,
+    "lon": 132.769920017146,
+    "zoom": 17,
+    "score": 0.19078055024147034,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_089.png"
+  },
+  "90": {
+    "name": "アドベンチャーワールド",
+    "lat": 33.6682040451849,
+    "lon": 135.375316703456,
+    "zoom": 18,
+    "score": 0.033348213881254196,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_090.png"
+  },
+  "91": {
+    "name": "福岡ドーム",
+    "lat": 33.5956086551314,
+    "lon": 130.361844247079,
+    "zoom": 17,
+    "score": 0.28232282400131226,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_091.png"
+  },
+  "92": {
+    "name": "高知城",
+    "lat": 33.5608929363195,
+    "lon": 133.53175261769,
+    "zoom": 14,
+    "score": 0.061502791941165924,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_092.png"
+  },
+  "93": {
+    "name": "太宰府天満宮",
+    "lat": 33.5215664502702,
+    "lon": 130.535263779057,
+    "zoom": 18,
+    "score": 0.16470099985599518,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_093.png"
+  },
+  "94": {
+    "name": "吉野ヶ里遺跡",
+    "lat": 33.3233275345569,
+    "lon": 130.385220978139,
+    "zoom": 16,
+    "score": 0.059003010392189026,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_094.png"
+  },
+  "95": {
+    "name": "大分マリーンパレス水族館「うみたまご」",
+    "lat": 33.2590010459853,
+    "lon": 131.536679195687,
+    "zoom": 15,
+    "score": 0.4858136773109436,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_095.png"
+  },
+  "96": {
+    "name": "大分スポーツ公園総合競技場",
+    "lat": 33.2009207347865,
+    "lon": 131.658562151507,
+    "zoom": 15,
+    "score": 0.35848894715309143,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_096.png"
+  },
+  "97": {
+    "name": "阿蘇元気の森／阿蘇ファームランド",
+    "lat": 32.8983855317965,
+    "lon": 131.00764749013,
+    "zoom": 15,
+    "score": 0.15645642578601837,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_097.png"
+  },
+  "98": {
+    "name": "長崎原爆資料館",
+    "lat": 32.7730605138253,
+    "lon": 129.865191586429,
+    "zoom": 16,
+    "score": 0.07175241410732269,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_098.png"
+  },
+  "99": {
+    "name": "いおワールドかごしま水族館",
+    "lat": 31.5960850894567,
+    "lon": 130.56554447475,
+    "zoom": 17,
+    "score": 0.1416184902191162,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_099.png"
+  },
+  "100": {
+    "name": "おきなわワールド",
+    "lat": 26.1406155173895,
+    "lon": 127.749481138377,
+    "zoom": 14,
+    "score": 0.07177714258432388,
+    "textbook_path": "C:\\Users\\Administrator\\Desktop\\yamagata_geo\\textbook_images\\textbook_100.png"
+  }
+}
