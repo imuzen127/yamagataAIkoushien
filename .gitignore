@@ -16,6 +16,8 @@ build/
 
 # Data files (large, stored locally)
 # data/
+training_data/
+questions/
 
 # Temporary files
 *.tmp
