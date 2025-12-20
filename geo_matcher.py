@@ -24,8 +24,8 @@ warnings.filterwarnings('ignore')
 SCRIPT_DIR = Path(__file__).parent.absolute()
 
 # デフォルト設定（環境変数で上書き可能）
-SAMPLE_DIR = os.environ.get('SAMPLE_DIR', r"C:\Users\Administrator\Desktop\施設画像サンプル（100施設）_20251120\施設画像サンプル")
-EXCEL_PATH = os.environ.get('EXCEL_PATH', r"C:\Users\Administrator\Desktop\施設情報（100施設）_20251031\施設情報（100施設）_20251031.xlsx")
+SAMPLE_DIR = os.environ.get('SAMPLE_DIR', str(SCRIPT_DIR / "data" / "施設画像サンプル（100施設）_20251120" / "施設画像サンプル"))
+EXCEL_PATH = os.environ.get('EXCEL_PATH', str(SCRIPT_DIR / "data" / "施設情報（100施設）_20251031" / "施設情報（100施設）_20251031.xlsx"))
 OUTPUT_DIR = os.environ.get('OUTPUT_DIR', str(SCRIPT_DIR / "textbook_images"))
 MAPPING_FILE = os.environ.get('MAPPING_FILE', str(SCRIPT_DIR / "mapping.json"))
 
