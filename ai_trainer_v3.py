@@ -23,7 +23,7 @@ import time
 
 # ===== 設定 =====
 SCRIPT_DIR = Path(__file__).parent.absolute()
-TEXTBOOK_DIR = SCRIPT_DIR / "textbook_images"
+TEXTBOOK_DIR = SCRIPT_DIR / "textbook_images_v2"  # 高解像度版を使用
 SAMPLE_DIR = SCRIPT_DIR / "data" / "施設画像サンプル（100施設）_20251120" / "施設画像サンプル"
 TRAINING_DIR = SCRIPT_DIR / "training_data_v3"
 MODEL_PATH = SCRIPT_DIR / "model_v3.pth"
