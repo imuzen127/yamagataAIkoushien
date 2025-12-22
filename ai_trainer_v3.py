@@ -608,10 +608,12 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("使用方法:")
         print("  データ生成:     python ai_trainer_v3.py generate [crops_per_image]")
-        print("  学習(カスタム): python ai_trainer_v3.py train [iterations] [epochs] [target_acc]")
-        print("  学習(ResNet):   python ai_trainer_v3.py train_resnet [iterations] [epochs] [target_acc]")
+        print("  学習(カスタム): python ai_trainer_v3.py train [iterations] [epochs] [target_acc] [batch_size]")
+        print("  学習(ResNet):   python ai_trainer_v3.py train_resnet [iterations] [epochs] [target_acc] [batch_size]")
         print("  推論:           python ai_trainer_v3.py predict <問題画像フォルダ>")
         print("  全実行:         python ai_trainer_v3.py all")
+        print("")
+        print("  例: python ai_trainer_v3.py train 10 30 95 16  (バッチサイズ16)")
         sys.exit(1)
 
     mode = sys.argv[1].lower()
@@ -624,15 +626,17 @@ if __name__ == "__main__":
         iterations = int(sys.argv[2]) if len(sys.argv) > 2 else 10
         epochs = int(sys.argv[3]) if len(sys.argv) > 3 else 30
         target = float(sys.argv[4]) if len(sys.argv) > 4 else 95.0
+        batch = int(sys.argv[5]) if len(sys.argv) > 5 else 16  # デフォルト16に変更
         iterative_train_v3(max_iterations=iterations, epochs_per_iter=epochs,
-                          target_accuracy=target, use_resnet=False)
+                          target_accuracy=target, use_resnet=False, batch_size=batch)
 
     elif mode == "train_resnet":
         iterations = int(sys.argv[2]) if len(sys.argv) > 2 else 10
         epochs = int(sys.argv[3]) if len(sys.argv) > 3 else 30
         target = float(sys.argv[4]) if len(sys.argv) > 4 else 95.0
+        batch = int(sys.argv[5]) if len(sys.argv) > 5 else 16  # デフォルト16に変更
         iterative_train_v3(max_iterations=iterations, epochs_per_iter=epochs,
-                          target_accuracy=target, use_resnet=True)
+                          target_accuracy=target, use_resnet=True, batch_size=batch)
 
     elif mode == "predict":
         if len(sys.argv) < 3:
@@ -642,7 +646,7 @@ if __name__ == "__main__":
 
     elif mode == "all":
         generate_training_data_v3(num_crops_per_image=300)
-        iterative_train_v3(max_iterations=10, epochs_per_iter=30, target_accuracy=95.0)
+        iterative_train_v3(max_iterations=10, epochs_per_iter=30, target_accuracy=95.0, batch_size=16)
 
     else:
         print(f"Unknown mode: {mode}")
