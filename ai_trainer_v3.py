@@ -545,8 +545,12 @@ def predict_v3(question_dir, output_file="answer.txt", use_resnet=False):
     ]
 
     question_dir = Path(question_dir)
+    # 数字順でソート (q1, q2, ... q10 の順になるように)
+    import re
+    def natural_sort_key(s):
+        return [int(text) if text.isdigit() else text.lower() for text in re.split('([0-9]+)', s)]
     question_files = sorted([f for f in os.listdir(question_dir)
-                            if f.lower().endswith(('.jpg', '.jpeg', '.png'))])
+                            if f.lower().endswith(('.jpg', '.jpeg', '.png'))], key=natural_sort_key)
     print(f"問題画像: {len(question_files)}枚")
 
     results = []
