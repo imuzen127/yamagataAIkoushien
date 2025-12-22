@@ -30,21 +30,39 @@ MAPPING_FILE = SCRIPT_DIR / "mapping_v2.json"
 DEFAULT_ZOOM = 18  # 最大ズームレベル
 DEFAULT_SCALE = 2.0  # デフォルト200%
 
-# 施設別カスタム設定 (問題のある施設を調整)
-FACILITY_CONFIG = {
-    # 45番: 範囲をさらに広げる
-    45: {'scale': 4.0, 'zoom': 18},  # 400%に拡大
+# 元のズームレベル（mapping.jsonから取得）
+ORIGINAL_ZOOM_LEVELS = {
+    1: 15, 2: 17, 3: 18, 4: 18, 5: 17, 6: 16, 7: 16, 8: 17, 9: 16, 10: 18,
+    11: 16, 12: 17, 13: 16, 14: 14, 15: 17, 16: 16, 17: 18, 18: 16, 19: 18, 20: 17,
+    21: 16, 22: 18, 23: 15, 24: 16, 25: 16, 26: 18, 27: 17, 28: 16, 29: 17, 30: 14,
+    31: 17, 32: 17, 33: 16, 34: 14, 35: 17, 36: 15, 37: 16, 38: 15, 39: 17, 40: 18,
+    41: 17, 42: 18, 43: 16, 44: 18, 45: 18, 46: 17, 47: 17, 48: 16, 49: 16, 50: 18,
+    51: 17, 52: 17, 53: 17, 54: 17, 55: 18, 56: 18, 57: 18, 58: 17, 59: 14, 60: 17,
+    61: 18, 62: 18, 63: 17, 64: 18, 65: 15, 66: 15, 67: 17, 68: 16, 69: 15, 70: 17,
+    71: 16, 72: 16, 73: 15, 74: 14, 75: 17, 76: 17, 77: 15, 78: 14, 79: 17, 80: 17,
+    81: 17, 82: 16, 83: 16, 84: 16, 85: 16, 86: 15, 87: 15, 88: 18, 89: 17, 90: 18,
+    91: 17, 92: 14, 93: 18, 94: 16, 95: 15, 96: 15, 97: 15, 98: 16, 99: 17, 100: 14,
+}
 
-    # 65,66,67番: オフセットなし
+def calculate_scale(facility_id):
+    """元のズームレベルに基づいてスケールを計算"""
+    original_zoom = ORIGINAL_ZOOM_LEVELS.get(facility_id, 17)
+    # スケール = 2.0 × 2^(18 - 元のズーム)
+    scale = DEFAULT_SCALE * (2 ** (DEFAULT_ZOOM - original_zoom))
+    return scale
+
+# 手動設定した施設（上書きしない）
+MANUAL_FACILITIES = {45, 65, 66, 67}
+
+# 施設別カスタム設定 (手動設定のみ)
+FACILITY_CONFIG = {
+    # 45番: 手動設定
+    45: {'scale': 4.0, 'zoom': 18},  # 400%
+
+    # 65,66,67番: 手動設定
     65: {'scale': 3.5, 'zoom': 18},  # 350%
     66: {'scale': 3.5, 'zoom': 18},  # 350%
     67: {'scale': 2.5, 'zoom': 18},  # 250%
-
-    # 73番 (45と混同された)
-    73: {'scale': 2.5, 'zoom': 18},
-
-    # 70番 (65と混同された)
-    70: {'scale': 2.0, 'zoom': 18},
 }
 
 # ===== 座標変換関数 =====
@@ -154,9 +172,17 @@ def learning_flow_v2(facility_ids=None):
         lon = float(row['経度'])
 
         # カスタム設定を取得
+        if facility_id in MANUAL_FACILITIES:
+            # 手動設定の施設はそのまま使用
+            config = FACILITY_CONFIG.get(facility_id, {})
+            zoom = config.get('zoom', DEFAULT_ZOOM)
+            scale = config.get('scale', DEFAULT_SCALE)
+        else:
+            # 自動計算：元のズームレベルに基づいてスケールを算出
+            zoom = DEFAULT_ZOOM
+            scale = calculate_scale(facility_id)
+
         config = FACILITY_CONFIG.get(facility_id, {})
-        zoom = config.get('zoom', DEFAULT_ZOOM)
-        scale = config.get('scale', DEFAULT_SCALE)
         offset_lat = config.get('offset_lat', 0)
         offset_lon = config.get('offset_lon', 0)
 

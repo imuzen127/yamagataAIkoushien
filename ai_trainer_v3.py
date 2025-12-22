@@ -20,6 +20,7 @@ import random
 from pathlib import Path
 from collections import defaultdict
 import time
+from datetime import datetime, timezone, timedelta
 
 # ===== 設定 =====
 SCRIPT_DIR = Path(__file__).parent.absolute()
@@ -430,7 +431,10 @@ def iterative_train_v3(max_iterations=10, epochs_per_iter=30, target_accuracy=95
 
             test_acc = 100.0 * test_correct / test_total
 
-            print(f"  Epoch [{epoch+1}/{epochs_per_iter}] "
+            # 日本時間 (JST = UTC+9)
+            jst = timezone(timedelta(hours=9))
+            now_jst = datetime.now(jst).strftime('%H:%M:%S')
+            print(f"  [{now_jst}] Epoch [{epoch+1}/{epochs_per_iter}] "
                   f"Loss: {train_loss/len(train_loader):.4f} "
                   f"Train: {train_acc:.2f}% "
                   f"Test: {test_acc:.2f}%", flush=True)
