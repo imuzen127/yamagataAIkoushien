@@ -352,6 +352,7 @@ def iterative_train_v3(max_iterations=10, epochs_per_iter=30, target_accuracy=95
 
         print(f"学習データ: {len(train_dataset)}枚")
         print(f"テストデータ: {len(test_dataset)}枚")
+        print("モデル初期化中...", flush=True)
 
         # モデル選択
         if use_resnet:
@@ -382,6 +383,8 @@ def iterative_train_v3(max_iterations=10, epochs_per_iter=30, target_accuracy=95
         scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs_per_iter)
 
         best_acc = 0
+        total_batches = len(train_loader)
+        print(f"学習開始 (バッチ数: {total_batches})", flush=True)
 
         for epoch in range(epochs_per_iter):
             # 学習
@@ -390,7 +393,9 @@ def iterative_train_v3(max_iterations=10, epochs_per_iter=30, target_accuracy=95
             train_correct = 0
             train_total = 0
 
-            for images, labels in train_loader:
+            for batch_idx, (images, labels) in enumerate(train_loader):
+                if batch_idx == 0:
+                    print(f"  Epoch {epoch+1}: 最初のバッチ処理中...", flush=True)
                 images, labels = images.to(device), labels.to(device)
 
                 optimizer.zero_grad()
@@ -403,6 +408,10 @@ def iterative_train_v3(max_iterations=10, epochs_per_iter=30, target_accuracy=95
                 _, predicted = outputs.max(1)
                 train_total += labels.size(0)
                 train_correct += predicted.eq(labels).sum().item()
+
+                # 進捗表示 (100バッチごと)
+                if (batch_idx + 1) % 100 == 0:
+                    print(f"    バッチ {batch_idx+1}/{total_batches}", flush=True)
 
             train_acc = 100.0 * train_correct / train_total
 
