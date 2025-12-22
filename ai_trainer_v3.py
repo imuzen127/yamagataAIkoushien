@@ -95,15 +95,17 @@ def generate_training_data_v3(num_crops_per_image=300, train_ratio=0.8):
                 # 入力サイズにリサイズ
                 crop = crop.resize((INPUT_SIZE, INPUT_SIZE), Image.LANCZOS)
 
-                # 学習/テスト分割
+                # 学習/テスト分割 (相対パスで保存)
                 if random.random() < train_ratio:
                     crop_path = train_dir / f"{i:03d}" / f"{source_name}_{i:03d}_{crop_count:05d}.png"
                     crop.save(crop_path)
-                    train_labels.append({"file": str(crop_path), "label": i})
+                    rel_path = f"train/{i:03d}/{source_name}_{i:03d}_{crop_count:05d}.png"
+                    train_labels.append({"file": rel_path, "label": i})
                 else:
                     crop_path = test_dir / f"{i:03d}" / f"{source_name}_{i:03d}_{crop_count:05d}.png"
                     crop.save(crop_path)
-                    test_labels.append({"file": str(crop_path), "label": i})
+                    rel_path = f"test/{i:03d}/{source_name}_{i:03d}_{crop_count:05d}.png"
+                    test_labels.append({"file": rel_path, "label": i})
 
                 crop_count += 1
 
@@ -129,6 +131,7 @@ class CropDatasetV3(Dataset):
         with open(label_file, 'r') as f:
             self.data = json.load(f)
         self.transform = transform
+        self.base_dir = Path(label_file).parent  # training_data_v3フォルダ
         if hard_samples:
             self.data.extend(hard_samples)
 
@@ -137,7 +140,9 @@ class CropDatasetV3(Dataset):
 
     def __getitem__(self, idx):
         item = self.data[idx]
-        img = Image.open(item['file']).convert('RGB')
+        # 相対パスをベースディレクトリからの絶対パスに変換
+        file_path = self.base_dir / item['file']
+        img = Image.open(file_path).convert('RGB')
         label = item['label'] - 1
 
         if self.transform:
