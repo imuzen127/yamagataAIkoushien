@@ -509,7 +509,7 @@ def iterative_train_v3(max_iterations=10, epochs_per_iter=30, target_accuracy=95
 
 
 # ===== AI推論 =====
-def predict_v3(question_dir, output_file="answer.txt", use_resnet=False):
+def predict_v3(question_dir, output_file="answer.txt", use_resnet=False, model_path=None):
     """v3推論"""
     print("=" * 60)
     print("AI推論 v3")
@@ -518,7 +518,9 @@ def predict_v3(question_dir, output_file="answer.txt", use_resnet=False):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     # モデルロード
-    checkpoint = torch.load(MODEL_PATH, map_location=device)
+    load_path = Path(model_path) if model_path else MODEL_PATH
+    print(f"モデルファイル: {load_path}")
+    checkpoint = torch.load(load_path, map_location=device)
     model_type = checkpoint.get('model_type', 'custom_cnn')
 
     if model_type == 'resnet18':
@@ -632,7 +634,7 @@ if __name__ == "__main__":
         print("  データ生成:     python ai_trainer_v3.py generate [crops_per_image]")
         print("  学習(カスタム): python ai_trainer_v3.py train [iterations] [epochs] [target_acc] [batch_size]")
         print("  学習(ResNet):   python ai_trainer_v3.py train_resnet [iterations] [epochs] [target_acc] [batch_size]")
-        print("  推論:           python ai_trainer_v3.py predict <問題画像フォルダ>")
+        print("  推論:           python ai_trainer_v3.py predict <問題画像フォルダ> [モデルファイル]")
         print("  全実行:         python ai_trainer_v3.py all")
         print("")
         print("  例: python ai_trainer_v3.py train 10 30 95 16  (バッチサイズ16)")
@@ -664,7 +666,8 @@ if __name__ == "__main__":
         if len(sys.argv) < 3:
             print("Error: 問題画像フォルダを指定してください")
             sys.exit(1)
-        predict_v3(sys.argv[2])
+        model_file = sys.argv[3] if len(sys.argv) > 3 else None
+        predict_v3(sys.argv[2], model_path=model_file)
 
     elif mode == "all":
         generate_training_data_v3(num_crops_per_image=300)
