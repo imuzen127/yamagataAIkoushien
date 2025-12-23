@@ -125,6 +125,236 @@ def generate_training_data_v3(num_crops_per_image=300, train_ratio=0.8):
     return len(train_labels), len(test_labels)
 
 
+# ===== 部分再生成 (特定施設のみ) =====
+def regenerate_facilities(facility_ids, num_crops_per_image=300, train_ratio=0.8):
+    """特定施設の訓練データのみ再生成"""
+    print("=" * 60)
+    print(f"部分再生成: 施設 {facility_ids}")
+    print("=" * 60)
+
+    train_dir = TRAINING_DIR / "train"
+    test_dir = TRAINING_DIR / "test"
+
+    # 既存のラベルファイル読み込み
+    train_labels_path = TRAINING_DIR / "train_labels.json"
+    test_labels_path = TRAINING_DIR / "test_labels.json"
+
+    if train_labels_path.exists():
+        with open(train_labels_path, 'r') as f:
+            train_labels = json.load(f)
+    else:
+        train_labels = []
+
+    if test_labels_path.exists():
+        with open(test_labels_path, 'r') as f:
+            test_labels = json.load(f)
+    else:
+        test_labels = []
+
+    # 対象施設の既存データを削除
+    train_labels = [x for x in train_labels if x['label'] not in facility_ids]
+    test_labels = [x for x in test_labels if x['label'] not in facility_ids]
+
+    for i in facility_ids:
+        # 既存ファイル削除
+        train_subdir = train_dir / f"{i:03d}"
+        test_subdir = test_dir / f"{i:03d}"
+        if train_subdir.exists():
+            for f in train_subdir.glob("*"):
+                f.unlink()
+        if test_subdir.exists():
+            for f in test_subdir.glob("*"):
+                f.unlink()
+
+        sources = []
+
+        # 教科書画像
+        textbook_path = TEXTBOOK_DIR / f"textbook_{i:03d}.png"
+        if textbook_path.exists():
+            sources.append(("textbook", Image.open(textbook_path).convert('RGB')))
+
+        # サンプル画像
+        sample_path = SAMPLE_DIR / f"map{i:03d}.jpg"
+        if sample_path.exists():
+            sources.append(("sample", Image.open(sample_path).convert('RGB')))
+
+        if not sources:
+            print(f"  Warning: No images for facility {i}")
+            continue
+
+        train_subdir.mkdir(parents=True, exist_ok=True)
+        test_subdir.mkdir(parents=True, exist_ok=True)
+
+        crop_count = 0
+        for source_name, img in sources:
+            w, h = img.size
+            crops_per_source = num_crops_per_image // len(sources)
+
+            for j in range(crops_per_source):
+                crop_size = random.choice(CROP_SIZES)
+
+                if w < crop_size or h < crop_size:
+                    actual_crop = min(w, h)
+                    x = random.randint(0, max(0, w - actual_crop))
+                    y = random.randint(0, max(0, h - actual_crop))
+                    crop = img.crop((x, y, x + actual_crop, y + actual_crop))
+                else:
+                    x = random.randint(0, w - crop_size)
+                    y = random.randint(0, h - crop_size)
+                    crop = img.crop((x, y, x + crop_size, y + crop_size))
+
+                crop = crop.resize((INPUT_SIZE, INPUT_SIZE), Image.LANCZOS)
+
+                if random.random() < train_ratio:
+                    crop_path = train_subdir / f"{source_name}_{i:03d}_{crop_count:05d}.png"
+                    crop.save(crop_path)
+                    rel_path = f"train/{i:03d}/{source_name}_{i:03d}_{crop_count:05d}.png"
+                    train_labels.append({"file": rel_path, "label": i})
+                else:
+                    crop_path = test_subdir / f"{source_name}_{i:03d}_{crop_count:05d}.png"
+                    crop.save(crop_path)
+                    rel_path = f"test/{i:03d}/{source_name}_{i:03d}_{crop_count:05d}.png"
+                    test_labels.append({"file": rel_path, "label": i})
+
+                crop_count += 1
+
+        print(f"  施設{i}: {crop_count}枚生成")
+
+    # ラベルファイル保存
+    with open(train_labels_path, 'w') as f:
+        json.dump(train_labels, f)
+    with open(test_labels_path, 'w') as f:
+        json.dump(test_labels, f)
+
+    print(f"\n再生成完了:")
+    print(f"  学習データ: {len(train_labels)}枚")
+    print(f"  テストデータ: {len(test_labels)}枚")
+
+    return len(train_labels), len(test_labels)
+
+
+# ===== ファインチューニング =====
+def finetune_v3(base_model_path, facility_ids, epochs=10, batch_size=16, output_suffix="ft"):
+    """既存モデルを特定施設でファインチューニング"""
+    print("=" * 60)
+    print(f"ファインチューニング")
+    print(f"ベースモデル: {base_model_path}")
+    print(f"対象施設: {facility_ids}")
+    print(f"エポック: {epochs}")
+    print("=" * 60)
+
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    print(f"デバイス: {device}")
+
+    # ベースモデルロード
+    checkpoint = torch.load(base_model_path, map_location=device)
+    model_type = checkpoint.get('model_type', 'custom_cnn')
+    base_acc = checkpoint.get('best_acc', 0)
+
+    if model_type == 'resnet18':
+        model = ResNetFeatureExtractor(NUM_CLASSES).to(device)
+    else:
+        model = GeoClassifierV3(NUM_CLASSES).to(device)
+
+    model.load_state_dict(checkpoint['model_state_dict'])
+    print(f"モデルロード完了 (精度: {base_acc:.2f}%, タイプ: {model_type})")
+
+    # データ変換
+    train_transform = transforms.Compose([
+        transforms.RandomHorizontalFlip(),
+        transforms.RandomVerticalFlip(),
+        transforms.RandomRotation(15),
+        transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.1),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    ])
+    test_transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    ])
+
+    # データセット
+    train_dataset = CropDatasetV3(TRAINING_DIR / "train_labels.json", train_transform)
+    test_dataset = CropDatasetV3(TRAINING_DIR / "test_labels.json", test_transform)
+
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=0)
+    test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=0)
+
+    print(f"学習データ: {len(train_dataset)}枚")
+    print(f"テストデータ: {len(test_dataset)}枚")
+
+    # 低い学習率でファインチューニング
+    optimizer = optim.AdamW(model.parameters(), lr=0.0001, weight_decay=0.01)
+    criterion = nn.CrossEntropyLoss()
+    scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
+
+    best_acc = base_acc
+    jst = timezone(timedelta(hours=9))
+
+    for epoch in range(epochs):
+        model.train()
+        train_loss = 0.0
+        train_correct = 0
+        train_total = 0
+
+        for batch_idx, (images, labels) in enumerate(train_loader):
+            images, labels = images.to(device), labels.to(device)
+
+            optimizer.zero_grad()
+            outputs = model(images)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+
+            train_loss += loss.item()
+            _, predicted = outputs.max(1)
+            train_total += labels.size(0)
+            train_correct += predicted.eq(labels).sum().item()
+
+        scheduler.step()
+        train_acc = 100.0 * train_correct / train_total
+
+        # テスト
+        model.eval()
+        test_correct = 0
+        test_total = 0
+        with torch.no_grad():
+            for images, labels in test_loader:
+                images, labels = images.to(device), labels.to(device)
+                outputs = model(images)
+                _, predicted = outputs.max(1)
+                test_total += labels.size(0)
+                test_correct += predicted.eq(labels).sum().item()
+
+        test_acc = 100.0 * test_correct / test_total
+
+        now_jst = datetime.now(jst).strftime('%H:%M:%S')
+        print(f"  [{now_jst}] Epoch [{epoch+1}/{epochs}] "
+              f"Loss: {train_loss/len(train_loader):.4f} "
+              f"Train: {train_acc:.2f}% "
+              f"Test: {test_acc:.2f}%", flush=True)
+
+        # ベストモデル保存
+        if test_acc > best_acc:
+            best_acc = test_acc
+            # 新しいモデルファイル名
+            base_name = Path(base_model_path).stem
+            new_model_path = SCRIPT_DIR / f"{base_name}_{output_suffix}.pth"
+            torch.save({
+                'model_state_dict': model.state_dict(),
+                'best_acc': best_acc,
+                'model_type': model_type,
+                'finetuned_facilities': facility_ids,
+            }, new_model_path)
+            print(f"  -> ベスト更新! {new_model_path} (精度: {best_acc:.2f}%)")
+
+    print(f"\nファインチューニング完了")
+    print(f"  元精度: {base_acc:.2f}%")
+    print(f"  最終精度: {best_acc:.2f}%")
+
+    return best_acc
+
+
 # ===== データセット =====
 class CropDatasetV3(Dataset):
     def __init__(self, label_file, transform=None, hard_samples=None):
@@ -632,12 +862,16 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("使用方法:")
         print("  データ生成:     python ai_trainer_v3.py generate [crops_per_image]")
+        print("  部分再生成:     python ai_trainer_v3.py regenerate <施設番号...>")
         print("  学習(カスタム): python ai_trainer_v3.py train [iterations] [epochs] [target_acc] [batch_size]")
         print("  学習(ResNet):   python ai_trainer_v3.py train_resnet [iterations] [epochs] [target_acc] [batch_size]")
+        print("  ファインチューニング: python ai_trainer_v3.py finetune <モデル> <epochs> <施設番号...>")
         print("  推論:           python ai_trainer_v3.py predict <問題画像フォルダ> [モデルファイル]")
         print("  全実行:         python ai_trainer_v3.py all")
         print("")
         print("  例: python ai_trainer_v3.py train 10 30 95 16  (バッチサイズ16)")
+        print("  例: python ai_trainer_v3.py regenerate 68 69")
+        print("  例: python ai_trainer_v3.py finetune model_v3m89.pth 10 68 69")
         sys.exit(1)
 
     mode = sys.argv[1].lower()
@@ -645,6 +879,13 @@ if __name__ == "__main__":
     if mode == "generate":
         num_crops = int(sys.argv[2]) if len(sys.argv) > 2 else 300
         generate_training_data_v3(num_crops_per_image=num_crops)
+
+    elif mode == "regenerate":
+        if len(sys.argv) < 3:
+            print("Error: 施設番号を指定してください")
+            sys.exit(1)
+        facility_ids = [int(x) for x in sys.argv[2:]]
+        regenerate_facilities(facility_ids)
 
     elif mode == "train":
         iterations = int(sys.argv[2]) if len(sys.argv) > 2 else 10
@@ -661,6 +902,17 @@ if __name__ == "__main__":
         batch = int(sys.argv[5]) if len(sys.argv) > 5 else 16  # デフォルト16に変更
         iterative_train_v3(max_iterations=iterations, epochs_per_iter=epochs,
                           target_accuracy=target, use_resnet=True, batch_size=batch)
+
+    elif mode == "finetune":
+        # 形式: finetune <モデル> <エポック数> <施設番号...>
+        if len(sys.argv) < 5:
+            print("Error: モデルファイル、エポック数、施設番号を指定してください")
+            print("  例: python ai_trainer_v3.py finetune model_v3m89.pth 10 68 69")
+            sys.exit(1)
+        model_file = sys.argv[2]
+        epochs = int(sys.argv[3])
+        facility_ids = [int(x) for x in sys.argv[4:]]
+        finetune_v3(model_file, facility_ids, epochs=epochs)
 
     elif mode == "predict":
         if len(sys.argv) < 3:
