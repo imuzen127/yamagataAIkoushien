@@ -234,8 +234,21 @@ def regenerate_facilities(facility_ids, num_crops_per_image=300, train_ratio=0.8
 
 
 # ===== ファインチューニング =====
-def finetune_v3(base_model_path, facility_ids, epochs=10, batch_size=16, output_suffix="ft"):
-    """既存モデルを特定施設でファインチューニング"""
+def find_next_model_number():
+    """既存のmodel_v3mXXX.pthから次の番号を取得"""
+    import re
+    max_num = 0
+    for f in SCRIPT_DIR.glob("model_v3m*.pth"):
+        match = re.search(r'model_v3m(\d+)', f.stem)
+        if match:
+            num = int(match.group(1))
+            if num > max_num:
+                max_num = num
+    return max_num + 1
+
+
+def finetune_v3(base_model_path, facility_ids, epochs=10, batch_size=16, start_number=None):
+    """既存モデルを特定施設でファインチューニング（毎エポック保存）"""
     print("=" * 60)
     print(f"ファインチューニング")
     print(f"ベースモデル: {base_model_path}")
@@ -245,6 +258,11 @@ def finetune_v3(base_model_path, facility_ids, epochs=10, batch_size=16, output_
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"デバイス: {device}")
+
+    # 開始番号を決定
+    if start_number is None:
+        start_number = find_next_model_number()
+    print(f"モデル番号開始: m{start_number}")
 
     # ベースモデルロード
     checkpoint = torch.load(base_model_path, map_location=device)
@@ -334,23 +352,25 @@ def finetune_v3(base_model_path, facility_ids, epochs=10, batch_size=16, output_
               f"Train: {train_acc:.2f}% "
               f"Test: {test_acc:.2f}%", flush=True)
 
-        # ベストモデル保存
+        # 毎エポックでモデル保存
+        model_num = start_number + epoch
+        new_model_path = SCRIPT_DIR / f"model_v3m{model_num}.pth"
+        torch.save({
+            'model_state_dict': model.state_dict(),
+            'best_acc': test_acc,
+            'model_type': model_type,
+            'finetuned_facilities': facility_ids,
+            'epoch': epoch + 1,
+        }, new_model_path)
+        print(f"  -> 保存: {new_model_path.name} (精度: {test_acc:.2f}%)")
+
         if test_acc > best_acc:
             best_acc = test_acc
-            # 新しいモデルファイル名
-            base_name = Path(base_model_path).stem
-            new_model_path = SCRIPT_DIR / f"{base_name}_{output_suffix}.pth"
-            torch.save({
-                'model_state_dict': model.state_dict(),
-                'best_acc': best_acc,
-                'model_type': model_type,
-                'finetuned_facilities': facility_ids,
-            }, new_model_path)
-            print(f"  -> ベスト更新! {new_model_path} (精度: {best_acc:.2f}%)")
 
     print(f"\nファインチューニング完了")
     print(f"  元精度: {base_acc:.2f}%")
-    print(f"  最終精度: {best_acc:.2f}%")
+    print(f"  最高精度: {best_acc:.2f}%")
+    print(f"  保存モデル: model_v3m{start_number}.pth ~ model_v3m{start_number + epochs - 1}.pth")
 
     return best_acc
 
@@ -865,13 +885,13 @@ if __name__ == "__main__":
         print("  部分再生成:     python ai_trainer_v3.py regenerate <施設番号...>")
         print("  学習(カスタム): python ai_trainer_v3.py train [iterations] [epochs] [target_acc] [batch_size]")
         print("  学習(ResNet):   python ai_trainer_v3.py train_resnet [iterations] [epochs] [target_acc] [batch_size]")
-        print("  ファインチューニング: python ai_trainer_v3.py finetune <モデル> <epochs> <施設番号...>")
+        print("  ファインチューニング: python ai_trainer_v3.py finetune <モデル> <epochs> <施設番号...> [開始番号]")
         print("  推論:           python ai_trainer_v3.py predict <問題画像フォルダ> [モデルファイル]")
         print("  全実行:         python ai_trainer_v3.py all")
         print("")
         print("  例: python ai_trainer_v3.py train 10 30 95 16  (バッチサイズ16)")
         print("  例: python ai_trainer_v3.py regenerate 68 69")
-        print("  例: python ai_trainer_v3.py finetune model_v3m89.pth 10 68 69")
+        print("  例: python ai_trainer_v3.py finetune model_v3m89.pth 10 68 69  (毎エポックm番号で保存)")
         sys.exit(1)
 
     mode = sys.argv[1].lower()
@@ -907,12 +927,13 @@ if __name__ == "__main__":
         # 形式: finetune <モデル> <エポック数> <施設番号...>
         if len(sys.argv) < 5:
             print("Error: モデルファイル、エポック数、施設番号を指定してください")
-            print("  例: python ai_trainer_v3.py finetune model_v3m89.pth 10 68 69")
+            print("  例: python ai_trainer_v3.py finetune model_v3m109.pth 10 68 69")
             sys.exit(1)
         model_file = sys.argv[2]
         epochs = int(sys.argv[3])
         facility_ids = [int(x) for x in sys.argv[4:]]
         finetune_v3(model_file, facility_ids, epochs=epochs)
+        # 毎エポック model_v3mXXX.pth として保存される (番号は自動検出)
 
     elif mode == "predict":
         if len(sys.argv) < 3:

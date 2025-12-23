@@ -52,7 +52,7 @@ def calculate_scale(facility_id):
     return scale
 
 # 手動設定した施設（上書きしない）
-MANUAL_FACILITIES = {45, 65, 66, 67, 68, 69}
+MANUAL_FACILITIES = {45, 65, 66, 67, 68, 69, 70}
 
 # 施設別カスタム設定 (手動設定のみ)
 FACILITY_CONFIG = {
@@ -60,13 +60,16 @@ FACILITY_CONFIG = {
     45: {'scale': 4.0, 'zoom': 18},  # 400%
 
     # 65,66,67番: 手動設定
-    65: {'scale': 3.5, 'zoom': 18},  # 350%
+    65: {'scale': 4.0, 'zoom': 18},  # 400%
     66: {'scale': 3.5, 'zoom': 18},  # 350%
     67: {'scale': 2.5, 'zoom': 18},  # 250%
 
     # 68,69番: 位置が近いため手動調整
     68: {'scale': 2.5, 'zoom': 18, 'offset_lon': -0.002},  # 250%, 西にずらす
     69: {'scale': 2.7, 'zoom': 18, 'offset_lon': -0.0005},  # 270%, 西にずらす
+
+    # 70番: 手動設定
+    70: {'scale': 4.5, 'zoom': 18},  # 450%
 }
 
 # ===== 座標変換関数 =====
