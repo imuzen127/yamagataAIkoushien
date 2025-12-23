@@ -125,6 +125,44 @@ def generate_training_data_v3(num_crops_per_image=300, train_ratio=0.8):
     return len(train_labels), len(test_labels)
 
 
+# ===== ラベルファイルのクリーンアップ =====
+def cleanup_labels():
+    """存在しないファイルをラベルから削除"""
+    print("=" * 60)
+    print("ラベルファイルのクリーンアップ")
+    print("=" * 60)
+
+    train_labels_path = TRAINING_DIR / "train_labels.json"
+    test_labels_path = TRAINING_DIR / "test_labels.json"
+
+    cleaned_count = 0
+
+    for label_path in [train_labels_path, test_labels_path]:
+        if not label_path.exists():
+            continue
+
+        with open(label_path, 'r') as f:
+            labels = json.load(f)
+
+        original_count = len(labels)
+        valid_labels = []
+
+        for item in labels:
+            file_path = TRAINING_DIR / item['file']
+            if file_path.exists():
+                valid_labels.append(item)
+            else:
+                cleaned_count += 1
+
+        with open(label_path, 'w') as f:
+            json.dump(valid_labels, f)
+
+        print(f"  {label_path.name}: {original_count} -> {len(valid_labels)} ({original_count - len(valid_labels)}件削除)")
+
+    print(f"\n合計 {cleaned_count} 件のエントリを削除しました")
+    return cleaned_count
+
+
 # ===== 部分再生成 (特定施設のみ) =====
 def regenerate_facilities(facility_ids, num_crops_per_image=300, train_ratio=0.8):
     """特定施設の訓練データのみ再生成"""
@@ -883,9 +921,10 @@ if __name__ == "__main__":
         print("使用方法:")
         print("  データ生成:     python ai_trainer_v3.py generate [crops_per_image]")
         print("  部分再生成:     python ai_trainer_v3.py regenerate <施設番号...>")
+        print("  クリーンアップ: python ai_trainer_v3.py cleanup  (削除済みファイルをラベルから除去)")
         print("  学習(カスタム): python ai_trainer_v3.py train [iterations] [epochs] [target_acc] [batch_size]")
         print("  学習(ResNet):   python ai_trainer_v3.py train_resnet [iterations] [epochs] [target_acc] [batch_size]")
-        print("  ファインチューニング: python ai_trainer_v3.py finetune <モデル> <epochs> <施設番号...> [開始番号]")
+        print("  ファインチューニング: python ai_trainer_v3.py finetune <モデル> <epochs> <施設番号...>")
         print("  推論:           python ai_trainer_v3.py predict <問題画像フォルダ> [モデルファイル]")
         print("  全実行:         python ai_trainer_v3.py all")
         print("")
@@ -906,6 +945,9 @@ if __name__ == "__main__":
             sys.exit(1)
         facility_ids = [int(x) for x in sys.argv[2:]]
         regenerate_facilities(facility_ids)
+
+    elif mode == "cleanup":
+        cleanup_labels()
 
     elif mode == "train":
         iterations = int(sys.argv[2]) if len(sys.argv) > 2 else 10
